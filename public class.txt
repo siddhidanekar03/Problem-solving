@@ -1,24 +1,20 @@
-public class Prime {
-
+public class RiddleSolver {
     public static void main(String[] args) {
+        System.out.println("Solving the riddles...");
 
-        int low = 20, high = 50;
+        System.out.println("1. When sun meets to ground at noon & sun comes to earth, combine this places to get the new place.");
+        System.out.println("Answer: Sundial\n");
 
-        while (low < high) {
-            boolean flag = false;
+        System.out.println("2. I mark the end & the start, a moment of the darkness, yet full of hart when hands meet straight & tall.");
+        System.out.println("   The word restart for one & all, What am I?");
+        System.out.println("Answer: Midnight\n");
 
-            for(int i = 2; i <= low/2; ++i) {
-                // condition for nonprime number
-                if(low % i == 0) {
-                    flag = true;
-                    break;
-                }
-            }
+        System.out.println("3. I stand tall when the day is bright, casting a shadow short & tight.");
+        System.out.println("   When divided into quarters, I mark a key sight. My first full turn is small but right. What number am I?");
+        System.out.println("Answer: 12\n");
 
-            if (!flag && low != 0 && low != 1)
-                System.out.print(low + " ");
-
-            ++low;
-        }
+        System.out.println("4. In the quiet depths of night, where time’s guardians unite in silent embrace,");
+        System.out.println("   a hidden cipher awakens from the void, heralding a secret renewal.");
+        System.out.println("Answer: Midnight");
     }
 }
