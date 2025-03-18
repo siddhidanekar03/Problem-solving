@@ -1,0 +1,26 @@
+import java.util.Random;
+
+public class HillClimbing {
+    // Function to maximize: f(x) = -(x - 3)² + 9
+    static double function(double x) {
+        return -(x - 3) * (x - 3) + 9;
+    }
+
+    public static void main(String[] args) {
+        Random rand = new Random();
+        double currentX = rand.nextDouble() * 10;  // Random start between 0 and 10
+        double stepSize = 0.1;  // Small incremental step
+        double maxIterations = 100;
+        
+        System.out.println("Starting point: x = " + currentX + ", f(x) = " + function(currentX));
+
+        for (int i = 0; i < maxIterations; i++) {
+            double nextX = currentX + (rand.nextBoolean() ? stepSize : -stepSize);
+            if (function(nextX) > function(currentX)) {
+                currentX = nextX;  // Move to a better solution
+            }
+        }
+
+        System.out.println("Final solution: x = " + currentX + ", f(x) = " + function(currentX));
+    }
+}
