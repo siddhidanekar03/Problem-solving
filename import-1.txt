@@ -1,0 +1,37 @@
+
+import java.util.Scanner;
+
+public class FibonacciSeries {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of terms: ");
+        int n = scanner.nextInt();
+
+        System.out.println("Fibonacci Series (Iterative):");
+        fibonacciIterative(n);
+
+        System.out.println("\nFibonacci Series (Recursive):");
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacciRecursive(i) + " ");
+        }
+
+        scanner.close();
+    }
+
+    // Iterative approach
+    public static void fibonacciIterative(int n) {
+        int a = 0, b = 1, temp;
+        for (int i = 0; i < n; i++) {
+            System.out.print(a + " ");
+            temp = a + b;
+            a = b;
+            b = temp;
+        }
+    }
+
+    // Recursive approach
+    public static int fibonacciRecursive(int n) {
+        if (n <= 1) return n;
+        return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    }
+}
