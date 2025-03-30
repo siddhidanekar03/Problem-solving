@@ -1,0 +1,45 @@
+
+public class StringOperations {
+    public static void main(String[] args) {
+        // Creating a string
+        String str = "Hello, Java!";
+
+        // 1. String Length
+        System.out.println("Length: " + str.length());
+
+        // 2. Convert to Upper and Lower Case
+        System.out.println("Upper Case: " + str.toUpperCase());
+        System.out.println("Lower Case: " + str.toLowerCase());
+
+        // 3. Substring
+        System.out.println("Substring (7 to end): " + str.substring(7));
+
+        // 4. Character at Index
+        System.out.println("Character at index 4: " + str.charAt(4));
+
+        // 5. String Concatenation
+        String newStr = str.concat(" Welcome!");
+        System.out.println("Concatenated String: " + newStr);
+
+        // 6. String Comparison
+        System.out.println("Equals 'Hello, Java!': " + str.equals("Hello, Java!"));
+        System.out.println("Ignore Case Equals 'hello, java!': " + str.equalsIgnoreCase("hello, java!"));
+
+        // 7. String Replace
+        System.out.println("Replace 'Java' with 'World': " + str.replace("Java", "World"));
+
+        // 8. Checking if String Contains a Substring
+        System.out.println("Contains 'Java': " + str.contains("Java"));
+
+        // 9. Splitting a String
+        String[] words = str.split(", ");
+        System.out.println("Split Words:");
+        for (String word : words) {
+            System.out.println(word);
+        }
+
+        // 10. String Trim
+        String spacedString = "   Trim Example   ";
+        System.out.println("Trimmed: '" + spacedString.trim() + "'");
+    }
+}
