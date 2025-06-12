@@ -1,86 +1,49 @@
-// Base class User
-class User {
-    protected String fName, lName, mName, email, mobile;
-    protected String birthdate;
+import java.util.Arrays;
+import java.util.Comparator;
 
-    // Constructor
-    public User(String fName, String lName, String mName, String email, String mobile, String birthdate) {
-        this.fName = fName;
-        this.lName = lName;
-        this.mName = mName;
-        this.email = email;
-        this.mobile = mobile;
-        this.birthdate = birthdate;
+public class exp5{
+
+    public static double fractionalKnapsack(int[] profits, int[]weights, int n, int capacity){
+
+        double[] ratio = new double[n];
+        for(int i=0; i<n; i++){
+            ratio[i] = (double)profits[i]/weights[i];
+        }
+
+        Integer[] indices = new Integer[n];
+        for(int i=0; i<n; i++){
+            indices[i] = i;
+        }
+        Arrays.sort(indices, new Comparator<Integer>(){
+            public int compare(Integer a, Integer b){
+                return Double.compare(ratio[b], ratio[a]);
+            }
+        });
+
+        double totalProfit=0;
+        int currentWeight=0;
+        for(int i=0; i<n; i++){
+            int idx = indices[i];
+            if(currentWeight + weights[idx] <= capacity){
+                totalProfit += profits[idx];
+                currentWeight += weights[idx];
+            }else{
+                int remainingCapacity = capacity - currentWeight;
+                totalProfit += ratio[idx]*remainingCapacity;
+                break;
+            }
+        }
+        return totalProfit;
+         
     }
 
-    // Display user details
-    public void displayUserDetails() {
-        System.out.println("Name: " + fName + " " + mName + " " + lName);
-        System.out.println("Email: " + email);
-        System.out.println("Mobile: " + mobile);
-        System.out.println("Birthdate: " + birthdate);
-    }
-}
+    public static void main(String args[]){
+        int[] profits = {60, 100, 120};
+        int[] weights = {10, 20, 30};
+        int n = profits.length;
+        int capacity =50;
 
-// Derived class Employee extends User
-class Employee extends User {
-    protected String employeeID, designation;
-    protected int salary;
-    protected boolean isManager;
-
-    // Constructor
-    public Employee(String fName, String lName, String mName, String email, String mobile, String birthdate,
-                    String employeeID, int salary, String designation, boolean isManager) {
-        super(fName, lName, mName, email, mobile, birthdate);
-        this.employeeID = employeeID;
-        this.salary = salary;
-        this.designation = designation;
-        this.isManager = isManager;
-    }
-
-    // Display employee details
-    public void displayEmployeeDetails() {
-        displayUserDetails();
-        System.out.println("Employee ID: " + employeeID);
-        System.out.println("Salary: " + salary);
-        System.out.println("Designation: " + designation);
-        System.out.println("Manager: " + (isManager ? "Yes" : "No"));
-    }
-}
-
-// Derived class Manager extends Employee
-class Manager extends Employee {
-
-    // Constructor
-    public Manager(String fName, String lName, String mName, String email, String mobile, String birthdate,
-                   String employeeID, int salary, String designation) {
-        super(fName, lName, mName, email, mobile, birthdate, employeeID, salary, designation, true);
-    }
-
-    // Display manager details
-    public void displayManagerDetails() {
-        displayEmployeeDetails();
-        System.out.println("Role: Manager");
-    }
-}
-
-// Main class with the main method
-public class Main {
-    public static void main(String[] args) {
-        // Creating an employee object
-        Employee emp = new Employee("John", "Doe", "M.", "john.doe@example.com", "1234567890", "1990-05-15",
-                                    "E12345", 50000, "Software Engineer", false);
-
-        // Creating a manager object
-        Manager mgr = new Manager("Jane", "Smith", "A.", "jane.smith@example.com", "0987654321", "1985-08-25",
-                                  "M54321", 90000, "Project Manager");
-
-        // Printing employee details
-        System.out.println("Employee Details:");
-        emp.displayEmployeeDetails();
-
-        // Printing manager details
-        System.out.println("\nManager Details:");
-        mgr.displayManagerDetails();
+        double result = fractionalKnapsack(profits, weights, n, capacity);
+        System.out.println("Maximum profit we can obtain: " + result);
     }
 }
